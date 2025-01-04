@@ -1,0 +1,17 @@
+.ping{
+    animation: pings 1s infinite;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+@keyframes pings {
+    0%{
+        align-items: flex-start;
+    }
+    50%{
+        align-items: center;
+    }
+    100%{
+        align-items: flex-end;  
+    }
+}
