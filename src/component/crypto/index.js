@@ -8,6 +8,20 @@ async function generateKey() {
         ["encrypt", "decrypt"]
     );
 }
+
+
+async function importKey(key) {
+    const encoded = new TextEncoder()
+    const hash = await crypto.subtle.digest('sha-256',encoded.encode(key))
+    return await crypto.subtle.importKey(
+        "raw",
+        hash,
+        { name:"AES-CBC"},
+        true,
+        ["encrypt", "decrypt"]
+    )
+}
+
 async function derivedKey(data) {
     const encoder = new TextEncoder();
     const keyMaterial = await crypto.subtle.importKey("raw",
@@ -73,5 +87,5 @@ async function decryptData(key, encryptedData, iv) {
 
 
 
-export { generateKey, encryptData, decryptData, exportKey1,derivedKey};
+export { generateKey, encryptData, decryptData, exportKey1,derivedKey, importKey};
     

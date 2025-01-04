@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { decryptData, derivedKey, encryptData, exportKey1, generateKey } from "."; // Ensure these utility functions are imported correctly
+import { decryptData, derivedKey, encryptData, exportKey1, generateKey, importKey } from "."; // Ensure these utility functions are imported correctly
 import axios from "axios";
 
 const Crypto = () => {
@@ -10,7 +10,7 @@ const Crypto = () => {
   const [key,setKey] = useState("")
   useEffect(() => {
     const performCryptoOperations = async () => {
-      const key_obj = await derivedKey("secret");
+      const key_obj = await importKey("secret");
       const exportKey = await exportKey1(key_obj);
       console.log("Exported Key:", exportKey);
       const data = "123";

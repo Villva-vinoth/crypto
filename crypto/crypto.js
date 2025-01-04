@@ -2,6 +2,8 @@ const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 const secret = "secret"
 const salt = "salt"
+const key = crypto.createHash('sha256').update(secret).digest();
+
 
 const decryption = (data) => {
     try {
@@ -10,7 +12,7 @@ const decryption = (data) => {
         const encryptedBuffer = Buffer.from(encrypted, 'base64');
         const ivBuffer = Buffer.from(iv, 'base64');
 
-        const key = deriveKey(secret, salt);
+        // const key = deriveKey(secret, salt);
         // console.log('Encrypted Buffer:', encryptedBuffer);
         // console.log('IV Buffer:', ivBuffer);
 
@@ -39,7 +41,7 @@ const encryptData = (data) => {
     // Create the cipher using the key and IV
 
 
-    const key = deriveKey(secret, salt);
+    // const key = deriveKey(secret, salt);
 
     const cipher = crypto.createCipheriv(algorithm, key, iv);
 
